@@ -34,6 +34,11 @@ class GalleryView(View):
         return render(request, 'gallery.html')
 
 
+class GameView(View):
+    def get(self, request):
+        return render(request, 'game.html')
+
+
 class EventListView(generic.ListView):
     model = Event
     template_name = 'schedule.html'

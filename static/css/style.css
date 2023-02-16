@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap');
 
-body {
+/* body {
     font-family: 'Roboto Slab', serif;
     background: url(../images/europe.webp);
     background-attachment: fixed;
     padding-top: 50px;
-}
+} */
 
 h1,
 h2,
@@ -88,8 +88,7 @@ h4 {
     text-align: center;
 }
 
-.reset,
-a {
+.reset {
     font-size: 22px;
     color: #000000;
     width: 28%;

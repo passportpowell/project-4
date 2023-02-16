@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Capital Cities Quiz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            margin-top: 30px;
+            width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .question {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .answers {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+
+        .score {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .timer {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Capital Cities Quiz</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Choose a Category</h3>
+                <div class="form-group">
+                    <select class="form-control" id="category">
+                        <option value="world">World</option>
+                        <option value="africa">Africa</option>
+                        <option value="asia">Asia</option>
+                        <option value="europe">Europe</option>
+                        <option value="north_america">North America</option>
+                        <option value="south_america">South America</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Score</h3>
+                <div class="score">
+                    Score: <span id="score">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Timer</h3>
+                <div class="timer">
+                    Time Remaining: <span id="time">60</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="question">
+                    <span id="question"></span>
+                </div>
+                <div class="answers">
+                    <button type="button" class="btn btn-primary" id="btn0"><span id="choice0"></span></button>
+                    <button type="button" class="btn btn-primary" id="btn1"><span id="choice1"></span></button>
+                    <button type="button" class="btn btn-primary" id="btn2"><span id="choice2"></span></button>
+                    <button type="button" class="btn btn-primary" id="btn3"><span id="choice3"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Questions and Answers
+        let questions = [{
+                question: "What is the capital of Australia?",
+                choices: ["Sydney", "Canberra", "Melbourne", "Perth"],
+                correctAnswer: 1
+            },
+            {
+                question: "What is the capital of India?",
+                choices: ["Mumbai", "Delhi", "Kolkata", "Chennai"],
+                correctAnswer: 1
+            },
+            {
+                question: "What is the capital of China?",
+                choices: ["Beijing", "Shanghai", "Hong Kong", "Taipei"],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the capital of Brazil?",
+                choices: ["Rio de Janeiro", "Sao Paulo", "Brasilia", "Salvador"],
+                correctAnswer: 2
+            },
+            {
+                question: "What is the capital of France?",
+                choices: ["Paris", "Marseille", "Lyon", "Nice"],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the capital of South Africa?",
+                choices: ["Cape Town", "Durban", "Johannesburg", "Pretoria"],
+                correctAnswer: 3
+            },
+            {
+                question: "What is the capital of Canada?",
+                choices: ["Montreal", "Toronto", "Vancouver", "Ottawa"],
+                correctAnswer: 3
+            },
+            {
+                question: "What is the capital of Japan?",
+                choices: ["Tokyo", "Kyoto", "Osaka", "Hiroshima"],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the capital of Mexico?",
+                choices: ["Cancun", "Acapulco", "Mexico City", "Guadalajara"],
+                correctAnswer: 2
+            },
+            {
+                question: "What is the capital of Spain?",
+                choices: ["Madrid", "Barcelona", "Valencia", "Seville"],
+                correctAnswer: 0
+            },
+
+            {
+                question: "What is the capital of Spain?",
+                choices: ["Madrid", "Barcelona", "Valencia", "Seville"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Australia",
+                question: "What is the capital of Australia?",
+                choices: ["Sydney", "Canberra", "Melbourne", "Perth"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of India?",
+                choices: ["Mumbai", "Delhi", "Kolkata", "Chennai"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of China?",
+                choices: ["Beijing", "Shanghai", "Hong Kong", "Taipei"],
+                correctAnswer: 0
+            },
+            {
+                // category: "South America",
+                question: "What is the capital of Peru?",
+                choices: ["Lima", "Cusco", "Arequipa", "Trujillo"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of France?",
+                choices: ["Paris", "Marseille", "Lyon", "Nice"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of South Africa?",
+                choices: ["Cape Town", "Durban", "Johannesburg", "Pretoria"],
+                correctAnswer: 3
+            },
+            {
+                // category: "North America",
+                question: "What is the capital of Canada?",
+                choices: ["Montreal", "Toronto", "Vancouver", "Ottawa"],
+                correctAnswer: 3
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of Japan?",
+                choices: ["Tokyo", "Kyoto", "Osaka", "Hiroshima"],
+                correctAnswer: 0
+            },
+            {
+                // category: "North America",
+                question: "What is the capital of Mexico?",
+                choices: ["Cancun", "Acapulco", "Mexico City", "Guadalajara"],
+                correctAnswer: 2
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Spain?",
+                choices: ["Madrid", "Barcelona", "Valencia", "Seville"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Nigeria?",
+                choices: ["Lagos", "Abuja", "Kano", "Ibadan"],
+                correctAnswer: 1
+            },
+            {
+                // category: "South America",
+                question: "What is the capital of Brazil?",
+                choices: ["Rio de Janeiro", "Sao Paulo", "Brasilia", "Salvador"],
+                correctAnswer: 2
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Italy?",
+                choices: ["Rome", "Milan", "Naples", "Florence"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Egypt?",
+                choices: ["Cairo", "Alexandria", "Giza", "Luxor"],
+                correctAnswer: 0
+            },
+            {
+                // category: "North America",
+                question: "What is the capital of the United States?",
+                choices: ["New York", "Washington D.C.", "Los Angeles", "Chicago"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Italy?",
+                choices: ["Rome", "Milan", "Florence", "Naples"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Russia?",
+                choices: ["St. Petersburg", "Moscow", "Novosibirsk", "Yekaterinburg"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Sweden?",
+                choices: ["Gothenburg", "Stockholm", "Malmö", "Uppsala"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Portugal?",
+                choices: ["Lisbon", "Porto", "Funchal", "Coimbra"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Switzerland?",
+                choices: ["Zürich", "Geneva", "Bern", "Basel"],
+                correctAnswer: 2
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Greece?",
+                choices: ["Athens", "Thessaloniki", "Patras", "Heraklion"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Croatia?",
+                choices: ["Zagreb", "Split", "Dubrovnik", "Rijeka"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Belgium?",
+                choices: ["Brussels", "Antwerp", "Ghent", "Charleroi"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Europe",
+                question: "What is the capital of Hungary?",
+                choices: ["Budapest", "Szeged", "Debrecen", "Miskolc"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of Thailand?",
+                choices: ["Bangkok", "Chiang Mai", "Phuket", "Krabi"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of Saudi Arabia?",
+                choices: ["Dubai", "Doha", "Riyadh", "Muscat"],
+                correctAnswer: 2
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of Vietnam?",
+                choices: ["Ho Chi Minh City", "Hanoi", "Da Nang", "Nha Trang"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of South Korea?",
+                choices: ["Busan", "Seoul", "Jeju", "Incheon"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Asia",
+                question: "What is the capital of Pakistan?",
+                choices: ["Karachi", "Lahore", "Islamabad", "Rawalpindi"],
+                correctAnswer: 2
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Egypt?",
+                choices: ["Cairo", "Alexandria", "Giza", "Luxor"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Kenya?",
+                choices: ["Mombasa", "Nairobi", "Kisumu", "Eldoret"],
+                correctAnswer: 1
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Morocco?",
+                choices: ["Rabat", "Casablanca", "Marrakesh", "Fez"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Ghana?",
+                choices: ["Accra", "Kumasi", "Tamale", "Cape Coast"],
+                correctAnswer: 0
+            },
+            {
+                // category: "Africa",
+                question: "What is the capital of Nigeria?",
+                choices: ["Lagos", "Abuja", "Kano", "Ibadan"],
+                correctAnswer: 1
+            }
+
+
+        ];
+
+        // Variables
+        let currentQuestion = 0;
+        let score = 0;
+        let timeRemaining = 60;
+        let multiplier = 1;
+        let interval;
+
+        // DOM Elements
+        let questionEl = document.getElementById("question");
+        let btn0 = document.getElementById("btn0");
+        let btn1 = document.getElementById("btn1");
+        let btn2 = document.getElementById("btn2");
+        let btn3 = document.getElementById("btn3");
+        let scoreEl = document.getElementById("score");
+        let timeEl = document.getElementById("time");
+        let categoryEl = document.getElementById("category");
+
+        // Functions
+        function startGame() {
+            // Hide category select
+            categoryEl.style.display = "none";
+            // Show questions
+            questionEl.style.display = "block";
+            // Start timer
+            interval = setInterval(function () {
+                timeRemaining--;
+                timeEl.textContent = timeRemaining;
+                if (timeRemaining === 0) {
+                    endGame();
+                }
+            }, 1000);
+            getQuestion();
+        }
+
+        function getQuestion() {
+            // Get current question object from array
+            let currentQ = questions[currentQuestion];
+            // Update title with current question
+            questionEl.textContent = currentQ.question;
+            // Loop over choices
+            currentQ.choices.forEach(function (choice, i) {
+                // Update button text
+                let btn = document.getElementById("btn" + i);
+                btn.textContent = choice;
+                // Attach click event listener to each choice
+                btn.addEventListener("click", function (e) {
+                    // Check if user guessed wrong
+                    if (e.target.textContent !== questions[currentQuestion].choices[questions[
+                            currentQuestion].correctAnswer]) {
+                        // Subtract time
+                        timeRemaining -= 10;
+                        timeEl.textContent = timeRemaining;
+                        // Change background color
+                        e.target.style.backgroundColor = "#dc3545";
+                        // Shake
+                        e.target.classList.add("shake");
+                        // Reset multiplier
+                        multiplier = 1;
+                    } else {
+                        // Increase score
+                        score += 10 * multiplier;
+                        scoreEl.textContent = score;
+                        // Change background color
+                        e.target.style.backgroundColor = "#28a745";
+                        // Increase multiplier
+                        multiplier++;
+                    }
+                    // Remove shake
+                    e.target.addEventListener("animationend", function () {
+                        e.target.classList.remove("shake");
+                    });
+                    // Delay
+                    setTimeout(function () {
+                        // Reset background color
+                        e.target.style.backgroundColor = "#007bff";
+                        // Move to next question
+                        currentQuestion++;
+                        // Check if we've run out of questions
+                        if (currentQuestion === questions.length) {
+                            endGame();
+                        } else {
+                            getQuestion();
+                        }
+                    }, 1000);
+                });
+            });
+        }
+
+        function endGame() {
+            // Show end screen
+            questionEl.style.display = "none";
+            // Stop timer
+            clearInterval(interval);
+            // Show final score
+            alert("Game Over! Your final score is " + score);
+            // Ask for username
+            let username = prompt("Enter your name:");
+            // Save score
+            if (username !== null) {
+                let savedScores = localStorage.getItem("savedScores");
+                if (savedScores === null) {
+                    savedScores = [];
+                } else {
+                    savedScores = JSON.parse(savedScores);
+                }
+                let scoreObj = {
+                    name: username,
+                    score: score
+                };
+                savedScores.push(scoreObj);
+                localStorage.setItem("savedScores", JSON.stringify(savedScores));
+            }
+            // Play again?
+            let playAgain = confirm("Play again?");
+            if (playAgain) {
+                // Reset variables
+                currentQuestion = 0;
+                score = 0;
+                timeRemaining = 60;
+                multiplier = 1;
+                // Reset DOM elements
+                scoreEl.textContent = 0;
+                timeEl.textContent = 60;
+                // Show category select
+                categoryEl.style.display = "block";
+            }
+        }
+
+        // Event Listeners
+        categoryEl.addEventListener("change", startGame);
+    </script>
+</body>
+
+</html>
