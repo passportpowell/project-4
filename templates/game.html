@@ -1,93 +1,104 @@
 {% load static %}
-<script src="{% static 'js/script.js' %}"></script>
 
 <!DOCTYPE html>
 <html lang="en">
+
+
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capital Cities Quiz</title>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script> -->
+    <!-- <script src="{% static 'script.js' %}"></script> -->
+
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Travel Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html" title="Home"
-                        aria-label="Go to Home Page (opens in current tab)">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="past-meets.html" title="Gallery"
-                        aria-label="Go to Gallery page (opens in current tab)">Gallery</a>
-                </li>
-                <li>
-                    <a class="nav-link active" href="game.html" title="Game"
-                        aria-label="Go to Game page (opens in current tab)">Game</a>
+</body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Travel Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html" title="Home"
+                    aria-label="Go to Home Page (opens in current tab)">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="past-meets.html" title="Gallery"
+                    aria-label="Go to Gallery page (opens in current tab)">Gallery</a>
+            </li>
+            <li>
+                <a class="nav-link active" href="game.html" title="Game"
+                    aria-label="Go to Game page (opens in current tab)">Game</a>
 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="signup.html" title="Sign Up"
-                        aria-label="Go to Sign up Page (opens in current tab)">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="schedule.html" title="Schedule"
-                        aria-label="Go to Schedule Page (opens in current tab)">Schedule</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container mt-5">
-        <div class="card mx-auto">
-            <div class="card-body">
-                <div class="text-center">
-                    <h1 class="mb-4">Capital Cities Quiz</h1>
-                    <h3 class="mb-3">Test Your Capital Cities Knowledge With Our Short Quiz!</h3>
-                    <h4 class="mb-4">10 Questions! Can You Get 50 Points?</h4>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="signup.html" title="Sign Up"
+                    aria-label="Go to Sign up Page (opens in current tab)">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="schedule.html" title="Schedule"
+                    aria-label="Go to Schedule Page (opens in current tab)">Schedule</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="card mx-auto">
+        <div class="card-body">
+            <div class="text-center">
+                <h1 class="mb-4">Capital Cities Quiz</h1>
+                <h3 class="mb-3">Test Your Capital Cities Knowledge With Our Short Quiz!</h3>
+                <h4 class="mb-4">10 Questions! Can You Get 50 Points?</h4>
+            </div>
+            <div class="result"></div>
+            <div id="results-display">
+                <div class="score">
+                    <p id="display" class="fs-4">Score</p>
+                    <h1 id="total" class="fs-1">0</h1>
                 </div>
-                <div class="result"></div>
-                <div id="results-display">
-                    <div class="score">
-                        <p id="display" class="fs-4">Score</p>
-                        <h1 id="total" class="fs-1">0</h1>
-                    </div>
-                </div>
-                <div class="questionsss mt-4" id="questionss">
-                    <h3 id="question" class="mb-3">What is the Capital of?</h3>
-                </div>
-                <div class="choices-area mt-3">
-                    <button class="options btn btn-primary me-3" id="option1" data-number="1">Option 1</button>
-                    <button class="options btn btn-primary me-3" id="option2" data-number="2">Option 2</button>
-                    <button class="options btn btn-primary me-3" id="option3" data-number="3">Option 3</button>
-                    <button class="options btn btn-primary me-3" id="option4" data-number="4">Option 4</button>
-                </div>
-                <div class="reset-skip-area mt-4">
-                    <a href="#" class="reset btn btn-secondary" aria-label="Reset Button">Reset</a>
-                </div>
+            </div>
+            <div class="questionsss mt-4" id="questionss">
+                <h3 id="question" class="mb-3">What is the Capital of?</h3>
+            </div>
+            <div class="choices-area mt-3">
+                <button class="options btn btn-primary me-3" id="option1" data-number="1">Option 1</button>
+                <button class="options btn btn-primary me-3" id="option2" data-number="2">Option 2</button>
+                <button class="options btn btn-primary me-3" id="option3" data-number="3">Option 3</button>
+                <button class="options btn btn-primary me-3" id="option4" data-number="4">Option 4</button>
+            </div>
+            <div class="reset-skip-area mt-4">
+                <a href="#" class="reset btn btn-secondary" aria-label="Reset Button">Reset</a>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'script.js' %}"></script>
+<script src="https://kit.fontawesome.com/d5114a4b10.js" crossorigin="anonymous"></script>
 
 </body>
-<script src="https://kit.fontawesome.com/d5114a4b10.js" crossorigin="anonymous"></script>
 
 
 </html>
+
+
+<!-- to fix - Javascript is not loading from static files. tried: loading the jquery file in my head block, didn't work. 
+    Fixed by: moving my js to the bottom and found multiple js files i tried to import. deleted the rest. -->
