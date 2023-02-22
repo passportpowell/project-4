@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["danjo-blog-2.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["project-4-passportpowell.herokuapp.com", "localhost"]
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 X_FRAME_OPTIONS = 'SAMEORIGIN'

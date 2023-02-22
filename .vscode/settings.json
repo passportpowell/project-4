@@ -26,5 +26,7 @@
    "editor.defaultFormatter": "HookyQR.beautify",
    "[python]": {
       "editor.defaultFormatter": "ms-python.python"
-   }
+   },
+   "editor.tabCompletion": "on",
+   "diffEditor.codeLens": true
 }

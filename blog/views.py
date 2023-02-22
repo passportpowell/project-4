@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.template import loader
 
 from django.views import generic, View
-from .models import Event, Post
+from .models import Event, Attendee
 from .forms import CommentForm, EventForm
 
 
